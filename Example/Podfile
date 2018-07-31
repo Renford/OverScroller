@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'OverScroller_Example' do
+  pod 'OverScroller', :path => '../'
+
+  target 'OverScroller_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
