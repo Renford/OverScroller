@@ -6,6 +6,6 @@ target 'OverScroller_Example' do
   target 'OverScroller_Tests' do
     inherit! :search_paths
 
-    pod 'FBSnapshotTestCase'
+#    pod 'FBSnapshotTestCase'
   end
 end

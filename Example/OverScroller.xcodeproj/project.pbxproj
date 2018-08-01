@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F887AC1BA84C5228287DC1C /* OverScroller.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = OverScroller.podspec; path = ../OverScroller.podspec; sourceTree = "<group>"; };
+		1F887AC1BA84C5228287DC1C /* OverScroller.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OverScroller.podspec; path = ../OverScroller.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		22616BA344F6C5CA820C8E0D /* Pods-OverScroller_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverScroller_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OverScroller_Tests/Pods-OverScroller_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		31843D3D1E76AA8AC768F230 /* Pods-OverScroller_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverScroller_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OverScroller_Example/Pods-OverScroller_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5EC79FC62A3B10170BFECA72 /* Pods-OverScroller_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverScroller_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OverScroller_Tests/Pods-OverScroller_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -60,10 +60,10 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		61D8C3EBF902E921BC09AD92 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		61D8C3EBF902E921BC09AD92 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A68B31D97CC131E9AD37C27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9A68B31D97CC131E9AD37C27 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B8CCEB261B4CD0F75965BC55 /* Pods-OverScroller_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverScroller_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-OverScroller_Example/Pods-OverScroller_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E4F26009968423FF0CC27610 /* Pods_OverScroller_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OverScroller_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72DFAD4CF52475CD9AD7EBE /* Pods_OverScroller_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OverScroller_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,7 +226,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				B5C57036324A6C18E9971555 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,6 +247,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = aelam;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 7RHB83697H;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -311,24 +313,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OverScroller_Example/Pods-OverScroller_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B5C57036324A6C18E9971555 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OverScroller_Tests/Pods-OverScroller_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OverScroller_Tests/Pods-OverScroller_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D352992451C5A22803BAB44C /* [CP] Check Pods Manifest.lock */ = {
@@ -504,6 +488,7 @@
 			baseConfigurationReference = 31843D3D1E76AA8AC768F230 /* Pods-OverScroller_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7RHB83697H;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OverScroller/OverScroller-Prefix.pch";
 				INFOPLIST_FILE = "OverScroller/OverScroller-Info.plist";
@@ -519,6 +504,7 @@
 			baseConfigurationReference = B8CCEB261B4CD0F75965BC55 /* Pods-OverScroller_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7RHB83697H;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OverScroller/OverScroller-Prefix.pch";
 				INFOPLIST_FILE = "OverScroller/OverScroller-Info.plist";

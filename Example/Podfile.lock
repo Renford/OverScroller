@@ -1,0 +1,16 @@
+PODS:
+  - OverScroller (0.1.0)
+
+DEPENDENCIES:
+  - OverScroller (from `../`)
+
+EXTERNAL SOURCES:
+  OverScroller:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  OverScroller: 0e8f0c5f7102b5137529930d2d890b289311a7bf
+
+PODFILE CHECKSUM: 96210a6859849d4f96d7a6a4490e7eaa595b6c24
+
+COCOAPODS: 1.5.3
