@@ -13,8 +13,9 @@ typedef void(^ScrollViewHandlerUpdater)(CGFloat);
 @interface ScrollViewHandler : NSObject
 
 @property (nonatomic, assign) CGFloat maxOffsetX;
-@property (nonatomic, assign) ScrollViewHandlerUpdater updater;
+@property (nonatomic,   copy) ScrollViewHandlerUpdater updater;
 @property (nonatomic, assign) CGFloat offsetX;
+@property (nonatomic, strong, readonly) UIView *scrollView;
 
 - (instancetype)initWithScrollView:(UIView *)scrollView;
 

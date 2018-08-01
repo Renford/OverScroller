@@ -24,7 +24,7 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
 @property (nonatomic, assign) CGPoint lastPointInBounds;
 @property (nonatomic, assign) CGSize contentSize;
 
-@property (nonatomic, strong) UIView *scrollView;
+@property (nonatomic, strong, readwrite) UIView *scrollView;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (nonatomic,   weak) UIDynamicItemBehavior *decelerationBehavior;
 @property (nonatomic,   weak) UIAttachmentBehavior *springBehavior;
@@ -61,8 +61,26 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
     NSLog(@"point: %@", NSStringFromCGPoint(self.dynamicItem.center));
 }
 
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
+        CGPoint velocity = [panGestureRecognizer velocityInView:self.scrollView];
+        if(fabs(velocity.x) > fabs(velocity.y)) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return otherGestureRecognizer;
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        return NO;
+    }
+    return YES;
 }
 
 
@@ -102,7 +120,6 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
             bounds.origin.y = constrainedBoundsOriginY + rubberBandedY;
 
             self.bounds = bounds;
-            NSLog(@"change bounds: %@", NSStringFromCGRect(bounds));
         }
             break;
         case UIGestureRecognizerStateEnded:
@@ -129,8 +146,6 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
                 CGRect bounds = weakSelf.bounds;
                 bounds.origin = weakSelf.dynamicItem.center;
                 weakSelf.bounds = bounds;
-                
-                NSLog(@"end bounds: %@", NSStringFromCGRect(bounds));
             };
 
             [self.animator addBehavior:decelerationBehavior];
