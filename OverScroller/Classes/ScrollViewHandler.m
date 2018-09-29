@@ -159,11 +159,20 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
 }
 
 - (void)setMaxOffsetX:(CGFloat)maxOffsetX {
-    if (_maxOffsetX == maxOffsetX) {
+    [self setContentMaxX:maxOffsetX];
+}
+
+- (CGFloat)maxOffsetX {
+    return _contentMaxX;
+}
+
+- (void)setContentMaxX:(CGFloat)contentMaxX {
+    if (_contentMaxX == contentMaxX) {
         return;
     }
-    _maxOffsetX = maxOffsetX;
-    self.contentSize = CGSizeMake(_maxOffsetX, self.scrollView.bounds.size.height);
+    
+    _contentMaxX = contentMaxX;
+    self.contentSize = CGSizeMake(_contentMaxX, self.scrollView.bounds.size.height);
     CGRect b = CGRectZero;
     b.size = self.contentSize;
     self.bounds = self.scrollView.bounds;
