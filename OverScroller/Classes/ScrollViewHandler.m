@@ -66,6 +66,9 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
         UIPanGestureRecognizer *panGestureRecognizer = (UIPanGestureRecognizer *)gestureRecognizer;
         CGPoint velocity = [panGestureRecognizer velocityInView:self.scrollView];
         if(fabs(velocity.x) > fabs(velocity.y)) {
+            if ([self.delegate respondsToSelector:@selector(handler:shouldBeginScroll:)]) {
+                return [self.delegate handler:self shouldBeginScroll:panGestureRecognizer];
+            }
             return YES;
         } else {
             return NO;

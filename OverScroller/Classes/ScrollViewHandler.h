@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class ScrollViewHandler;
+
+@protocol ScrollViewHandlerDelegate<NSObject>
+
+- (BOOL)handler:(ScrollViewHandler *)handler shouldBeginScroll:(UIGestureRecognizer *)gestureRecognizer;
+
+@end
+
 typedef void(^ScrollViewHandlerUpdater)(CGFloat);
 
 @interface ScrollViewHandler : NSObject
@@ -17,6 +25,7 @@ typedef void(^ScrollViewHandlerUpdater)(CGFloat);
 @property (nonatomic,   copy) ScrollViewHandlerUpdater updater;
 @property (nonatomic, assign) CGFloat offsetX;
 @property (nonatomic, strong, readonly) UIView *scrollView;
+@property (nonatomic, weak) id<ScrollViewHandlerDelegate> delegate;
 
 - (instancetype)initWithScrollView:(UIView *)scrollView;
 
