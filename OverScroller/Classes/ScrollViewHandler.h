@@ -17,12 +17,14 @@
 @end
 
 typedef void(^ScrollViewHandlerUpdater)(CGFloat);
+typedef void(^ScrollViewHandlerCompletion)(void);
 
 @interface ScrollViewHandler : NSObject
 
 @property (nonatomic, assign) CGFloat contentMaxX;
 @property (nonatomic, assign) CGFloat maxOffsetX __deprecated;
 @property (nonatomic,   copy) ScrollViewHandlerUpdater updater;
+@property (nonatomic,   copy) ScrollViewHandlerCompletion completion;
 @property (nonatomic, assign) CGFloat offsetX;
 @property (nonatomic, strong, readonly) UIView *scrollView;
 @property (nonatomic, weak) id<ScrollViewHandlerDelegate> delegate;

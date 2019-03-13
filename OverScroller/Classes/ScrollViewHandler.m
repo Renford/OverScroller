@@ -17,7 +17,7 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
     return offset < 0.0f ? -result : result;
 }
 
-@interface ScrollViewHandler () <UIGestureRecognizerDelegate>
+@interface ScrollViewHandler () <UIGestureRecognizerDelegate, UIDynamicAnimatorDelegate>
 
 @property (nonatomic, assign) CGRect bounds;
 @property (nonatomic, assign) CGRect startBounds;
@@ -51,6 +51,7 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
 
     panGestureRecognizer.delegate = self;
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.scrollView];
+    self.animator.delegate = self;
     self.dynamicItem = [[CSCDynamicItem alloc] init];
     
 //    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkUpdated:)];
@@ -170,6 +171,8 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
 }
 
 - (void)setContentMaxX:(CGFloat)contentMaxX {
+    [self.animator removeAllBehaviors];
+    
     if (_contentMaxX == contentMaxX) {
         return;
     }
@@ -219,6 +222,14 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
     }
 }
 
+- (void)dynamicAnimatorWillResume:(UIDynamicAnimator *)animator {
+}
+
+- (void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {
+    if (self.completion != nil) {
+        self.completion();
+    }
+}
 
 - (CGFloat)offsetX {
     return self.bounds.origin.x;
