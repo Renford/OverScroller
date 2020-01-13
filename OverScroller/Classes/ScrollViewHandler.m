@@ -54,13 +54,35 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
     self.animator.delegate = self;
     self.dynamicItem = [[CSCDynamicItem alloc] init];
     
-//    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkUpdated:)];
-//    [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    [self.scrollView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
 }
+
+- (void)dealloc
+{
+    [self.scrollView removeObserver:self forKeyPath:@"bounds"];
+}
+
 
 - (void)linkUpdated:(CADisplayLink *)link {
     NSLog(@"point: %@", NSStringFromCGPoint(self.dynamicItem.center));
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"bounds"]) {
+        CGRect oldRect = [change[@"old"] CGRectValue];
+        CGRect newRect = [change[@"new"] CGRectValue];
+        if (!CGRectEqualToRect(oldRect, newRect)) {
+            [self.animator removeAllBehaviors];
+            newRect.origin.x = 0;
+            newRect.origin.y = 0;
+            self.bounds = newRect;
+            self.contentSize = CGSizeMake(_contentMaxX, self.scrollView.bounds.size.height);
+            self.offsetX = 0;
+            [self postOffsetX];
+        }
+    }
+}
+
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
