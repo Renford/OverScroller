@@ -71,7 +71,8 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
     if ([keyPath isEqualToString:@"bounds"]) {
         CGRect oldRect = [change[@"old"] CGRectValue];
         CGRect newRect = [change[@"new"] CGRectValue];
-        if (!CGRectEqualToRect(oldRect, newRect)) {
+        
+        if (!CGSizeEqualToSize(oldRect.size, newRect.size)) {
             [self.animator removeAllBehaviors];
             newRect.origin.x = 0;
             newRect.origin.y = 0;
@@ -80,6 +81,16 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
             self.offsetX = 0;
             [self postOffsetX];
         }
+        
+//        if (!CGRectEqualToRect(oldRect, newRect)) {
+//            [self.animator removeAllBehaviors];
+//            newRect.origin.x = 0;
+//            newRect.origin.y = 0;
+//            self.bounds = newRect;
+//            self.contentSize = CGSizeMake(_contentMaxX, self.scrollView.bounds.size.height);
+//            self.offsetX = 0;
+//            [self postOffsetX];
+//        }
     }
 }
 
@@ -258,6 +269,9 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
 }
 
 - (void)setOffsetX:(CGFloat)offsetX {
+    
+    NSLog(@"==========contentOffsetX===over===%.02f", offsetX);
+    
     if (offsetX == self.bounds.origin.x) {
         return;
     }
