@@ -269,9 +269,6 @@ static CGFloat rubberBandDistance(CGFloat offset, CGFloat dimension) {
 }
 
 - (void)setOffsetX:(CGFloat)offsetX {
-    
-    NSLog(@"==========contentOffsetX===over===%.02f", offsetX);
-    
     if (offsetX == self.bounds.origin.x) {
         return;
     }
